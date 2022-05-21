@@ -9,7 +9,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  useColorScheme,
 } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,19 +16,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import Contacts from './Contacts';
 import EditContact from './EditContact';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Contacts: undefined;
+  EditContact: { index: number }
+};
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name='Contacts'
           component={Contacts}
-          options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Profile" component={EditContact} />
+        <Stack.Screen name='EditContact' component={EditContact} />
       </Stack.Navigator>
     </NavigationContainer>
   );

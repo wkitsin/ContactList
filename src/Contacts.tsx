@@ -35,6 +35,7 @@ const Contacts = (props: ContactsNavProps) => {
       <View
         style={styles.avatar}
       />
+
       <Text style={styles.name}>
         {item.firstName} {item.lastName}
       </Text>
@@ -60,6 +61,11 @@ const styles = StyleSheet.create({
   contactContainer: {
     padding: SPACING.S_2,
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatarContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {

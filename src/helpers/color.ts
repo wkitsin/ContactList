@@ -3,4 +3,5 @@ export enum Color {
   BORDER = '#D0CFCE',
   HEADER = '#ECECEC',
   WHITE = 'white',
+  INPUT = '#DADADA',
 }

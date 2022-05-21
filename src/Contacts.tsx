@@ -1,5 +1,7 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RootStackParamList } from './App';
 import CONTACT_LISTS from './data.json';
 import { Color } from './helpers/color';
 import { SPACING } from './helpers/spacing';
@@ -20,16 +22,23 @@ const ItemSeparatorComponent = () => (
   />
 )
 
-const Contacts = () => {
+type ContactsNavProps = NativeStackScreenProps<RootStackParamList, 'Contacts'>;
+
+const Contacts = (props: ContactsNavProps) => {
+  const { navigation } = props;
+
   const renderItem = ({ item }: { item: ContactListType }) => (
-    <View style={styles.contactContainer}>
+    <TouchableOpacity
+      style={styles.contactContainer}
+      onPress={() => navigation.navigate('EditContact')}
+    >
       <View
         style={styles.avatar}
       />
       <Text style={styles.name}>
         {item.firstName} {item.lastName}
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 
   return (
@@ -46,7 +55,7 @@ const Contacts = () => {
 
 const styles = StyleSheet.create({
   flatList: {
-    paddingHorizontal: SPACING.S_2,
+    backgroundColor: Color.WHITE,
   },
   contactContainer: {
     padding: SPACING.S_2,

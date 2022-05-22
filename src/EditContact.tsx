@@ -1,9 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Color } from './helpers/color';
 import { SPACING } from './helpers/spacing';
-import { ContactListType, RootStackParamList } from './typings';
+import { RootStackParamList } from './typings';
 import { useForm, Controller } from "react-hook-form";
 import { ASYNC_STORAGE_KEY } from './helpers/asyncStorage';
 import { ContactContext } from './App';
@@ -15,6 +15,10 @@ const EditContact = (props: EditContactNavProps) => {
   const { navigation, route } = props;
   const { params: { contact } } = route;
   const { setContacts, contacts } = useContext(ContactContext);
+
+  const lastNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -84,6 +88,8 @@ const EditContact = (props: EditContactNavProps) => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
+                onSubmitEditing={() => lastNameRef?.current?.focus()}
+                returnKeyType='next'
                 value={value}
                 style={styles.textInput}
                 onBlur={onBlur}
@@ -105,6 +111,9 @@ const EditContact = (props: EditContactNavProps) => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
+                onSubmitEditing={() => emailRef?.current?.focus()}
+                ref={lastNameRef}
+                returnKeyType='next'
                 value={value}
                 style={styles.textInput}
                 onBlur={onBlur}
@@ -126,6 +135,8 @@ const EditContact = (props: EditContactNavProps) => {
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
+                onSubmitEditing={() => phoneRef?.current?.focus()}
+                ref={emailRef}
                 value={value}
                 style={styles.textInput}
                 onBlur={onBlur}
@@ -142,6 +153,7 @@ const EditContact = (props: EditContactNavProps) => {
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
+                ref={phoneRef}
                 value={value}
                 style={styles.textInput}
                 onBlur={onBlur}

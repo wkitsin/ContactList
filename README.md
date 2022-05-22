@@ -19,5 +19,4 @@ Due to time limitations, there were a few limitations that this contact app can 
 1. Async Storage
 2. React Context Hook
 
-### Demo
-`./appVideo.mov`
+### Demo [Here](https://github.com/wkitsin/ContactList/blob/master/appVideo.mov)

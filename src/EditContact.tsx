@@ -136,6 +136,7 @@ const EditContact = (props: EditContactNavProps) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 onSubmitEditing={() => phoneRef?.current?.focus()}
+                returnKeyType='next'
                 ref={emailRef}
                 value={value}
                 style={styles.textInput}

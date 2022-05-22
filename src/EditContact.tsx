@@ -49,8 +49,15 @@ const EditContact = (props: EditContactNavProps) => {
       title: '',
       headerRight: () => (
         <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-          <Text>
+          <Text style={styles.save}>
             Save
+          </Text>
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.pop()}>
+          <Text style={styles.save}>
+            Cancel
           </Text>
         </TouchableOpacity>
       )
@@ -85,8 +92,9 @@ const EditContact = (props: EditContactNavProps) => {
             )}
             name="firstName"
           />
-          {errors.firstName && <Text>This is required.</Text>}
         </View>
+        {errors.firstName && <Text style={styles.error}>First Name is required.</Text>}
+
 
         <View style={styles.inputContainer}>
           <Text>Last Name</Text>
@@ -105,8 +113,8 @@ const EditContact = (props: EditContactNavProps) => {
             )}
             name='lastName'
           />
-          {errors.lastName && <Text>This is required.</Text>}
         </View>
+        {errors.lastName && <Text style={styles.error}>Last Name is required.</Text>}
       </View>
 
       <View>
@@ -186,6 +194,15 @@ const styles = StyleSheet.create({
     borderColor: Color.INPUT,
     borderWidth: 1,
     color: 'black',
+  },
+  error: {
+    color: Color.ERROR,
+    paddingHorizontal: SPACING.S_2,
+    marginBottom: SPACING.S_1,
+  },
+  save: {
+    color: Color.PRIMARY,
+    fontSize: 18,
   }
 });
 

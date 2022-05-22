@@ -4,4 +4,6 @@ export enum Color {
   HEADER = '#ECECEC',
   WHITE = 'white',
   INPUT = '#DADADA',
+  ERROR = 'red',
+  BLACK = 'black',
 }

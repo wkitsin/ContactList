@@ -7,6 +7,7 @@ import { useGetContacts } from './helpers/asyncStorage';
 import { Color } from './helpers/color';
 import { SPACING } from './helpers/spacing';
 import { ContactListType, RootStackParamList } from './typings';
+import Icon from 'react-native-vector-icons/dist/Feather';
 
 const ItemSeparatorComponent = () => (
   <View
@@ -25,6 +26,17 @@ const Contacts = (props: ContactsNavProps) => {
   useEffect(() => {
     useGetContacts().then(result => {
       setContacts(result)
+    });
+
+    // Navigation
+    navigation.setOptions({
+      headerTintColor: Color.BLACK,
+      headerRight: () => (
+        <Icon name='plus' size={20} color={Color.PRIMARY} />
+      ),
+      headerLeft: () => (
+        <Icon name='search' size={20} color={Color.PRIMARY} />
+      )
     });
   }, []);
 

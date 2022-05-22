@@ -14,7 +14,7 @@ Make sure you have the latest version of Node.js, Yarn, CocoaPod, as well as XCo
 Due to time limitations, there were a few limitations with the application
 1. Development was purely iOS and was not catered to android development
 
-### State Management
+### State Management System
 
 1. Async Storage
 2. React Context Hook

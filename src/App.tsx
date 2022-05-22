@@ -16,18 +16,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import Contacts from './Contacts';
 import EditContact from './EditContact';
 import { Color } from './helpers/color';
-
-export type RootStackParamList = {
-  Contacts: undefined;
-  EditContact: { index: number }
-};
+import { RootStackParamList } from './typings';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: Color.HEADER } }}>
+      <Stack.Navigator screenOptions={{
+        headerStyle: { backgroundColor: Color.HEADER },
+        headerTintColor: Color.PRIMARY,
+      }}>
         <Stack.Screen
           name='Contacts'
           component={Contacts}

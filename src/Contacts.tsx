@@ -1,7 +1,9 @@
+import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import CONTACT_LISTS from './data.json';
+import { ContactContext } from './App';
+import { useGetContacts } from './helpers/asyncStorage';
 import { Color } from './helpers/color';
 import { SPACING } from './helpers/spacing';
 import { ContactListType, RootStackParamList } from './typings';
@@ -18,6 +20,13 @@ type ContactsNavProps = NativeStackScreenProps<RootStackParamList, 'Contacts'>;
 
 const Contacts = (props: ContactsNavProps) => {
   const { navigation } = props;
+  const { setContacts, contacts } = useContext(ContactContext);
+
+  useEffect(() => {
+    useGetContacts().then(result => {
+      setContacts(result)
+    });
+  }, []);
 
   const renderItem = ({ item }: { item: ContactListType }) => (
     <TouchableOpacity
@@ -40,7 +49,7 @@ const Contacts = (props: ContactsNavProps) => {
     <View>
       <FlatList
         contentContainerStyle={styles.flatList}
-        data={CONTACT_LISTS}
+        data={contacts}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}
       />
